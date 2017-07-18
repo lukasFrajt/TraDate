@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  include navbar
+  div.container
+    h1= title
+    p  Welcome to #{title}
+    br
+    a(href="/login")
+      button.btn.btn-primary Login
+

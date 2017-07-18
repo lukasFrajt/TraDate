@@ -1,0 +1,189 @@
+body {
+  font-size: 14px;
+  font-family: 'Catamaran', sans-serif; }
+
+nav {
+  margin-bottom: 3rem; }
+
+.complete {
+  background: #bffd5f; }
+  .complete a {
+    color: #000000; }
+  .complete:hover {
+    background: #a5d65a !important; }
+
+.processing {
+  background: #ffeb75; }
+  .processing a {
+    color: #000000; }
+  .processing:hover {
+    background: #e0d071 !important; }
+
+.error {
+  background: #ff8b87; }
+  .error a {
+    color: #000000; }
+  .error:hover {
+    background: #d85854 !important; }
+
+.button {
+  margin-right: 1rem; }
+
+a.btn {
+  color: #FFF !important; }
+
+.order {
+  margin: 3rem 5rem; }
+  .order .colm {
+    padding: 0 !important;
+    border: 1px solid #000000; }
+    .order .colm .item {
+      padding: 1rem 1rem 1rem 4rem; }
+      .order .colm .item span {
+        font-size: 1.5rem;
+        font-weight: 700; }
+      .order .colm .item p {
+        padding-left: 1.5rem;
+        font-size: 1.2rem;
+        margin: 0; }
+  .order .header {
+    text-align: center;
+    padding: 1rem 0;
+    line-height: 1.5;
+    margin-bottom: 2rem; }
+    .order .header h2 {
+      margin: 0; }
+  .order .complete {
+    background: #a5d65a !important; }
+
+p.info {
+  color: red;
+  font-size: 2rem; }
+
+.disabled {
+  margin-bottom: 2rem; }
+  .disabled .block {
+    display: inline-block;
+    padding: .5rem 1rem;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 16px;
+    margin: .3rem; }
+    .disabled .block a {
+      color: #000000; }
+    .disabled .block .delete {
+      color: #ff8b87; }
+
+select {
+  height: 38px;
+  margin-right: 1rem; }
+
+.suggested-id {
+  margin-bottom: 2rem; }
+  .suggested-id form .form-group {
+    margin: .5rem; }
+    .suggested-id form .form-group label {
+      margin: .3rem; }
+
+.suggested-actual-value {
+  margin-left: 2rem; }
+  .suggested-actual-value h3 {
+    margin-bottom: .9rem; }
+  .suggested-actual-value p {
+    font-size: 1.5rem;
+    margin-bottom: 3rem; }
+
+.users > tbody > tr > td {
+  vertical-align: middle; }
+
+img.avatar {
+  height: 33px;
+  border-radius: 50%;
+  width: 33px;
+  margin-right: .6rem; }
+
+.find-user {
+  margin: 1rem 0  2rem 0; }
+
+.user-set {
+  max-width: 1000px;
+  margin: auto; }
+
+.user-window {
+  clear: both;
+  margin-top: 2rem; }
+
+.user-item {
+  background-color: #ffffff;
+  margin: 2rem auto;
+  border: #979797 1px solid;
+  padding: 0 0 .5rem 0;
+  box-shadow: 0 2px 5px #000000;
+  position: relative;
+  border-radius: 8px;
+  max-width: 1000px; }
+  .user-item .user-header {
+    position: relative; }
+  .user-item .background-img {
+    width: 100%;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    position: relative; }
+    .user-item .background-img .img-header {
+      width: 100%;
+      opacity: 0.5;
+      position: absolute;
+      top: -100%; }
+  .user-item .nav {
+    cursor: pointer;
+    position: absolute;
+    border-bottom: #979797 1px solid;
+    top: 0;
+    background: #fff;
+    z-index: 11;
+    width: 100%;
+    border-radius: 8px 8px 0 0; }
+    .user-item .nav a {
+      font-family: "Avenir";
+      padding: 1em;
+      color: #83B439;
+      font-size: 1.2rem; }
+      .user-item .nav a.active-user {
+        border-radius: 8px 0 0 0 !important;
+        background-color: #83B439;
+        color: #ffffff;
+        cursor: pointer; }
+      .user-item .nav a.active-order {
+        border-radius: 0 8px 0 0 !important;
+        background-color: #83B439;
+        color: #ffffff;
+        cursor: pointer; }
+  .user-item .portrait {
+    border-radius: 50%;
+    position: absolute;
+    width: 100px;
+    bottom: -36px;
+    left: 25px; }
+    @media (max-width: 576px) {
+      .user-item .portrait {
+        left: 0;
+        right: 0;
+        margin: auto; } }
+  .user-item .info-table {
+    margin: 4rem 5rem;
+    font-family: "Avenir"; }
+    .user-item .info-table .table-group {
+      margin-bottom: 1rem; }
+      .user-item .info-table .table-group .label {
+        color: #83B439;
+        font-size: 1.4rem; }
+    @media (max-width: 576px) {
+      .user-item .info-table {
+        margin: 4rem 1rem; } }
+
+.stats > tbody > tr > td {
+  vertical-align: middle; }
+
+/*# sourceMappingURL=style.css.map */

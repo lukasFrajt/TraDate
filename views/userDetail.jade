@@ -1,0 +1,92 @@
+extends layout
+
+block content
+    script.
+        function verify(id) {
+            console.log('ok')
+            if (confirm("Opravdu chcete smazat uživatele??") == true) {
+                window.location.replace("http://localhost:3004/users/delete/" + id);
+            }
+
+
+        }
+
+    include navbar
+    div.container
+
+        if user.user_metadata
+            h1=user.user_metadata.full_name
+        else
+            h1=user.name
+
+        div.user-set
+            button.btn.btn-danger(onclick="verify('#{user.user_id}')" class='button') Smazat účet
+            a.btn.btn-info Poslat email
+            div.user-window
+                div.container.user-item
+                    div.user-header
+                        div.background-img
+                            img(src="#{user.picture}").img-header
+                            img.portrait(src="#{user.picture}")
+                    div.user
+                        div.row.info-table
+                            if user.user_metadata
+                                div.col
+                                    div.table-group
+                                        span.label Jméno
+                                        br
+                                        if user.user_metadata.full_name && user.user_metadata
+                                            span #{user.user_metadata.full_name}
+                                        else
+                                            span=user.name
+                                    div.table-group
+                                        span.label Město
+                                        br
+                                        if user.user_metadata.town && user.user_metadata
+                                            span #{user.user_metadata.town}
+                                        else
+                                            span Nevyplněno
+
+                                    div.table-group
+                                        span.label Stát
+                                        br
+                                        if user.user_metadata.country && user.user_metadata
+                                            span #{user.user_metadata.country}
+                                        else
+                                            span Nevyplněno
+                                div.col
+                                    div.table-group
+                                        span.label Telefon
+                                        br
+                                        if user.user_metadata.telephone && user.user_metadata
+                                            span #{user.user_metadata.telephone}
+                                        else
+                                            span Nevyplněno
+                                    div.table-group
+                                        span.label Ulice č.p.
+                                        br
+                                        if user.user_metadata.town && user.user_metadata
+                                            span #{user.user_metadata.town}
+                                        else
+                                            span Nevyplněno
+                                div.col
+                                    div.table-group
+                                        span.label Email
+                                        br
+                                        if user.email
+                                            span #{user.email}
+                                        else
+                                            span Nevyplněno
+                                    div.table-group
+                                        span.label PSČ
+                                        br
+                                        if user.user_metadata.post_code && user.user_metadata
+                                            span #{user.user_metadata.post_code}
+                                        else
+                                            span Nevyplněno
+
+
+
+
+
+

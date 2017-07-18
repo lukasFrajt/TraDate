@@ -1,0 +1,70 @@
+extends layout
+
+block content
+    include navbar
+    div.container
+        h1= title
+
+        p Nastavení
+
+
+        h2 Státy
+        p Seznam států, které jsou zablokované
+        div.disabled
+            for country in disableCountries
+                div.block
+                    a(href="/settings/countryadd/#{country.id}") #{country.name} <i class="fa fa-times delete" aria-hidden="true"></i>
+        form(method="POST" action='/settings/countrydis')
+            select(name="select")
+                for country in countries
+                    option( value="#{country.id}") #{country.name}
+
+            input(type="submit" value="Přidat").btn.btn-info
+            br
+            br
+            br
+
+        h2 Navrhované zájezdy
+        h3 Podle Názvu
+        p Zadejte název navrhovaných ubytovacích zařízení maximálně 8 možností. Nenastavéné možnosti pole budou doplněny podle preferencí níže
+        div.row.suggested-id
+            form(method="POST" action='/settings/suggestedId').col-sm-12.form-inline
+                -var i =0
+                for suggested in suggestedId
+                    -i +=1
+                    div.form-group
+                        label(for="option1") Možnost #{i}
+                        if suggested
+                            input(type="text" value="#{suggested}" name="option#{i}").form-control
+                        else
+                            input(type="text" placeholder="nevyplaněno" name="option#{i}").form-control
+
+
+
+                div.form-group.row
+                    div.offset-sm-2.col-sm-10
+                        input(type="submit" value="Upravit").btn.btn-info
+        h3 Podle Státu, Destinace, Typu zájezdu, Stravování
+        p  Zadejte parametry podle kterých se doporučené zájezdy mají vyhledávat. Jednotlivé parametry nemějí být blokovány v parametrech pro vyhledávání!
+        h5 Státy
+        div.disabled
+            for country in suggestedCountries
+                div.block
+                    a(href="/settings/deletesuggCountry/#{country.id}") #{country.name} <i class="fa fa-times delete" aria-hidden="true"></i>
+        form(method="POST" action='/settings/addsuggestedcountry')
+            select(name="select")
+                for country in suggestedCountriesOptions
+                    option( value="#{country.id}") #{country.name}
+                input(type="submit" value="Přidat").btn.btn-info
+        br
+        h5 Typ zájezdů
+        div.disabled
+            for tripeType in suggestedTripTypes
+                div.block
+                    a(href="/settings/deletesuggtriptype/#{tripeType.id}") #{tripeType.name} <i class="fa fa-times delete" aria-hidden="true"></i>
+        form(method="POST" action='/settings/addsuggestedtriptype')
+            select(name="select")
+                for tripType in tripTypes
+                    option( value="#{tripType.id}") #{tripType.name}
+                input(type="submit" value="Přidat").btn.btn-info
+        br

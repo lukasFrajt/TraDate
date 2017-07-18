@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    include navbar
+    div.container
+        h1= title
+
+        form.form-inline.find-user(method="get" action='/users')
+            div.input-group.mb-2.mr-sm-2.mb-sm-0
+                div.input-group-addon <i class="fa fa-search" aria-hidden="true"></i>
+                input(type="text" placeholder="zadejte jméno nebo email" value=parameter name="value").form-control
+            div.input-group.mb-2.mr-sm-2.mb-sm-0
+                label(for="exampleSelect1").mb-2.mr-sm-2.mb-sm-0 Podle
+                select.custom-control.mb-2.mr-sm-2.mb-sm-0(id="exampleSelect1" name="options")
+                    option(value="1") Jména
+                    option(value="2") Emailu
+                button(type="submit").btn.btn-info Vyhledat
+
+
+        table.table.users
+            thead
+                tr
+                th Jméno
+                th Email
+                th Poslední přihlašení
+                th počet přihlášení
+                th
+            tbody
+            for user in users
+                tr
+                    td
+                        img(src="#{user.picture}").avatar
+                        if user.user_metadata
+                            a(href="users/#{user.user_id}") #{user.user_metadata.full_name}
+                        else
+
+                            a(href="users/#{user.user_id}") #{user.name}
+
+                    td=user.email
+                    td=user.last_login
+                    td=user.logins_count
+                    td
+                        a.btn.btn-info(href="/send-mail/?mail=#{user.email}") <i class="fa fa-envelope-o" aria-hidden="true"></i>
+
+

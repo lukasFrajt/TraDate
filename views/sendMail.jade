@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    include navbar
+    div.container
+        h1= title
+
+        p Pošli mail zákazníkům
+
+        if success == true
+            div.alert.alert-success(role="alert") #{info}
+
+        if success == false
+            div.alert.alert-danger(role="alert") #{info}
+        form.form(method='post' action='send-mail/send')
+            div.form-group
+                label(for="address") Emailová adresa
+                input(id="address" name="address" type=text placeholder="jmeno@adresa.cz" value="#{userMail}").form-control
+            div.form-group
+                label(for="sub") Předmět
+                input(id="sub" name="subject" type=text placeholder="informace k objednávce" value="#{subInfo}").form-control
+            div.form-group
+                label(for="message") Zpráva
+                textarea(id="message" name="message"  placeholder="informace k objednávce").form-control #{message}
+            button(type="submit").btn.btn-info Odeslat
+

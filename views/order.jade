@@ -1,0 +1,120 @@
+extends layout
+
+block content
+    script.
+        function verify(id) {
+           if(confirm("Opravdu chcete smazat objednávku??") == true){
+               window.location.replace("http://localhost:3004/orders/delete/" + id);
+           }
+
+
+        }
+
+    include navbar
+
+
+    div.container
+        h1 Objednávka č. !{order[0]._id}
+        p.info!{order[0].info}
+        button.btn.btn-danger(onclick="verify('#{order[0]._id}')" class='button') Smazat objednávku
+        div.btn-group
+            button.btn.dropdown-toggle(data-toggle="dropdown" class="button #{order[0].status}" aria-haspopup="true" aria-expanded="false") Status
+            div.dropdown-menu
+                a.dropdown-item(href='status/#{order[0]._id}/1') V pořádku
+                a.dropdown-item(href='status/#{order[0]._id}/2') Pozor
+                a.dropdown-item(href='status/#{order[0]._id}/3') Nebezpečí
+        a.btn.btn-info(href='http://localhost:3004/send-mail/?mail=#{user.email}&&subject=Info k objednávce č.#{order[0]._id}') Poslat e-mail
+
+    div.row.order
+            div.col-md-6.colm.col-sm-12
+                div.header(class="#{order[0].status}")
+                    h2 Zájezd
+                div.item
+                    span ID objednávky
+                    p #{order[0]._id}
+                div.item
+                    span Název ubytování
+                    p #{order[0].term.accommodation}
+                div.item
+                    span ID cestovní kanceláře
+                    p #{order[0].tour_operator}
+                div.item
+                    span Stát
+                    p #{order[0].country}
+                div.item
+                    span Destinace
+                    p #{order[0].desc}
+                div.item
+                    span Datum od
+                    p #{order[0].term.date_from}
+                div.item
+                    span Datum do
+                    p #{order[0].term.date_to}
+                div.item
+                    span Strava
+                    p #{order[0].term.boarding_id}
+                div.item
+                    span Cena
+                    p #{order[0].price} Kč
+            div.col-sm-12.col-md-6.colm
+                div.header(class="#{order[0].status}")
+                    h2 Zákazník
+                if user.user_metadata
+                    div.item
+                        span ID zákazníka
+                        p #{user.user_id}
+                    div.item
+                        span Jméno a příjmení
+                        p #{user.user_metadata.full_name}
+                    div.item
+                        span Adresa
+                        p #{user.user_metadata.address}
+                    div.item
+                        span PSČ
+                        p #{user.user_metadata.post_code}
+                    div.item
+                        span Město
+                        p #{user.user_metadata.town}
+                    div.item
+                        span Stát
+                        p #{user.user_metadata.country}
+                    div.item
+                        span Telefon
+                        p #{user.user_metadata.telephone}
+                    div.item
+                        span Email
+                        p #{user.email}
+                else
+                    p Uživatel nenalezen
+
+            div.col-sm-12
+                h2 Pokoje
+                table.table
+                    thead
+                    tr
+                    th Pokoj
+                    th Cena za
+                    th Počet osob
+                    th Cena za jednu osobu
+                    tbody
+                        for order_room in  order[0].rooms
+                            td=order_room.description
+                            td=order_room.room
+                            td=order_room.peopleCount
+                            td #{order_room.value} Kč
+            div.col-sm-12
+                h2 Osoby
+                table.table
+                    thead
+                    tr
+                    th Jméno
+                    th Příjmení
+                    th Datum narození
+                    tbody
+                        for person in  order[0].people
+                            td=person.firstName
+                            td=person.lastName
+                            td=person.born
+
+
+                h2.price-summary Cena celkem #{order[0].price} Kč

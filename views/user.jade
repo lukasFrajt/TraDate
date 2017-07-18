@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    include navbar
+    div.container
+        h2 Welcome #{user.nickname}!
+        img(src="#{user.picture}")
+        br
+        a(href='/logout') Logout
+

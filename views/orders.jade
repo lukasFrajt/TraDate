@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    include navbar
+    div.container
+        h1= title
+
+        p Správa objednávek
+        br
+        table.table.table-hover.table-responsive
+            thead
+                tr
+                th ID Objednávky
+                th Název ubytování
+                th ID CK
+                th ID termínu
+                th Od
+                th Do
+                th Cena
+                th ID zákazníka
+            tbody
+            for order in orders
+                tr(class="#{order.status}" )
+                    td
+                        a(href="orders/#{order._id}") #{order._id}
+                    td
+                        a(href="orders/#{order._id}") #{order.term.accommodation}
+                    td
+                        a(href="orders/#{order._id}") #{order.tour_operator}
+                    td
+                        a(href="orders/#{order._id}") #{order.term_id}
+                    td
+                        a(href="orders/#{order._id}") #{order.term.date_from}
+                    td
+                        a(href="orders/#{order._id}") #{order.term.date_to}
+                    td
+                        a(href="orders/#{order._id}") #{order.price} Kč
+                    td
+                        a(href="orders/#{order._id}") #{order.user_id}
+
+
+    br

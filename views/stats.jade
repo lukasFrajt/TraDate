@@ -1,0 +1,49 @@
+extends layout
+
+block content
+    script.
+        function restartCountry(id) {
+            if (confirm("Opravdu chcete smazat statistiku tohoto státu??") == true) {
+                window.location.replace("http://localhost:3004/stats/restart/" + id);
+            }
+
+
+        }
+        function restart() {
+            if (confirm("Opravdu chcete smazat statistiky??") == true) {
+                window.location.replace("http://localhost:3004/stats/all");
+            }
+
+
+        }
+
+    include navbar
+    div.container
+        h1= title
+
+        button.btn.btn-danger(onclick="restart()") Smazat statistiky
+
+        form.form-inline.find-user(method="get" action='/stats')
+            div.input-group.mb-2.mr-sm-2.mb-sm-0
+                div.input-group-addon <i class="fa fa-search" aria-hidden="true"></i>
+                input(type="text" value=countryValue name="name" placeholder="Název státu").form-control
+            button(type="submit").btn.btn-info Vyhledat
+
+
+        table.table.stats
+            thead
+                tr
+                th
+                    a(href="/stats/name") Nazev státu
+                th
+                    a(href="/stats/counter") Počet vyhledávání
+                th Poslední vyhledání
+                th Smazat statistiku
+            tbody
+            for country in countries
+                tr
+                    td=country.name
+                    td=country.counter
+                    td=country.last_search
+                    td
+                        button.btn.btn-danger(onclick='restartCountry("#{country.id}")') Smazat <i class="fa fa-times delete" aria-hidden="true"></i>
